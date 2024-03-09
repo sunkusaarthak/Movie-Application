@@ -1,0 +1,30 @@
+﻿@model Movie_Application.ViewModel.CustomersViewModel
+@{
+    ViewData["Title"] = "Customers Page";
+}
+
+@if (Model.Customers.Count > 0)
+{
+    <table>
+        <thead>
+            <th>
+                Customers
+            </th>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model.Customers)
+            {
+                <tr>
+                    <td>
+                        @customer.Name
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>We don't have Customers Yet!</p>
+}
+

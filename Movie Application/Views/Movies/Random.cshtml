@@ -1,0 +1,18 @@
+﻿@model Movie_Application.ViewModel.RandomViewModel
+@{
+    ViewData["Title"] = "Random Page";
+}
+
+<h2>@Model.movie.Name</h2>
+
+@if(@Model.customers.Count > 0) {
+    <ul>
+        @foreach(var customer in Model.customers)
+        {
+            <li>@customer.Name</li>
+        }
+    </ul>
+}
+else {
+    <p>No Customers to the Movie.</p>
+}

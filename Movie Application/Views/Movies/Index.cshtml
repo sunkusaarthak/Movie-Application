@@ -1,0 +1,30 @@
+﻿@model Movie_Application.ViewModel.MoviesViewModel
+@{
+    ViewData["Title"] = "Movies Page";
+}
+
+@if (Model.MoviesList.Count > 0)
+{
+    <table>
+        <thead>
+            <th>
+                Movies
+            </th>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model.MoviesList)
+            {
+                <tr>
+                    <td>
+                        @movie.Name
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>We don't have Movies Yet!</p>
+}
+
