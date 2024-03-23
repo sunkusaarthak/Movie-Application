@@ -8,19 +8,31 @@ namespace Movie_Application.Controllers
     {
         public IActionResult Index()
         {
-            List<Customer> customerList = new List<Customer>()
+            var customers = new CustomersViewModel() 
+            { 
+                Customers = GetCustomers()
+            };
+            return View(customers);
+        }
+
+        public IActionResult Details(int id)
+        {
+            var customer = GetCustomers().FirstOrDefault(p => p.Id == id);
+            if(customer == null)
+            {
+                return NotFound();
+            }
+            return View(customer);
+        }
+
+        private IEnumerable<Customer> GetCustomers()
+        {
+            return new List<Customer>()
             {
                 new Customer() {Id = 1, Name = "Sunku Saarthak"},
                 new Customer() {Id = 2, Name = "Tharun"},
                 new Customer() {Id = 3, Name = "Pavan"}
             };
-
-            var customers = new CustomersViewModel()
-            {
-                Customers = customerList
-            };
-
-            return View(customers);
         }
     }
 }

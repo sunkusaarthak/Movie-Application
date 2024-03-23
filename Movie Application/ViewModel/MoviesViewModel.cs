@@ -4,6 +4,6 @@ namespace Movie_Application.ViewModel
 {
     public class MoviesViewModel
     {
-        public List<Movie> MoviesList { get; set; }
+        public required IEnumerable<Movie> MoviesList { get; set; }
     }
 }

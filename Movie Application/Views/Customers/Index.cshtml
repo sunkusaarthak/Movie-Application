@@ -2,21 +2,21 @@
 @{
     ViewData["Title"] = "Customers Page";
 }
-
-@if (Model.Customers.Count > 0)
+<h2>Customers</h2>
+@if (Model.Customers.Any())
 {
-    <table>
+    <table class="table table-bordered table-hover">
         <thead>
             <th>
-                Customers
+                Customer
             </th>
         </thead>
         <tbody>
             @foreach (var customer in Model.Customers)
             {
                 <tr>
-                    <td>
-                        @customer.Name
+                    <td> 
+                        @Html.ActionLink(customer.Name, "Details", "Customers", new {id = customer.Id}, null);
                     </td>
                 </tr>
             }

@@ -1,11 +1,13 @@
 ﻿@model Movie_Application.ViewModel.MoviesViewModel
 @{
     ViewData["Title"] = "Movies Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (Model.MoviesList.Count > 0)
+<h2>Movies</h2>
+@if (Model.MoviesList.Any())
 {
-    <table>
+    <table class="table table-bordered table-hover">
         <thead>
             <th>
                 Movies
