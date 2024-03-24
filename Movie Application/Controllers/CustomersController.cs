@@ -35,7 +35,7 @@ namespace Movie_Application.Controllers
 
         public IActionResult Details(int id)
         {
-            var customer = _context.Customers.FirstOrDefault(p => p.Id == id);
+            var customer = _context.Customers.Include(m => m.MembershipType).FirstOrDefault(p => p.Id == id);
             if (customer == null)
             {
                 return NotFound();
