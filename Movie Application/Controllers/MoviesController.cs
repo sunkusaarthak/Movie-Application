@@ -6,6 +6,12 @@ namespace Movie_Application.Controllers
 {
     public class MoviesController : Controller
     {
+        ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = ApplicationDbContext.Create();
+        }
         public IActionResult Index()
         {
             var moviesViewModel = new MoviesViewModel()
@@ -20,11 +26,11 @@ namespace Movie_Application.Controllers
         {
             var movie = new Movie() { Id = 1, Name = "Jhon Wick 4" };
             var customerList = new List<Customer>()
-            {
+            /*{
                 new Customer() { Id = 1, Name = "Sunku Saarthak"},
                 new Customer() { Id = 2, Name = "Tharun" },
                 new Customer() { Id = 3, Name = "Pavan"}
-            };
+            }*/;
 
             var viewModel = new RandomViewModel()
             {
@@ -36,13 +42,7 @@ namespace Movie_Application.Controllers
 
         private IEnumerable<Movie> GetMovies()
         {
-            var moviesList = new List<Movie>()
-            {
-                new Movie() {Id = 1, Name ="John Wick 1"},
-                new Movie() {Id = 1, Name ="John Wick 2"},
-                new Movie() {Id = 1, Name ="John Wick 3"},
-                new Movie() {Id = 1, Name ="John Wick 4"}
-            };
+            var moviesList = _context.Movies.OrderBy(m => m.Id).ToList();
 
             return moviesList;
         }
