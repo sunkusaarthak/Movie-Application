@@ -1,0 +1,25 @@
+﻿@model Movie_Application.Models.Customer
+@{
+    ViewData["Title"] = "NewCustomer";
+}
+
+<h1>NewCustomer</h1>
+
+@using (Html.BeginForm("Create", "Customers"))
+{
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(c => c.Name)
+        @Html.TextBoxFor(c => c.Name)
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(c => c.DateOfBirth)
+        @Html.TextBoxFor(c => c.DateOfBirth)
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.CheckBoxFor(c => c.IsSubscribedToNewsletter) Subscribe For News Letter
+    </div>
+}
+

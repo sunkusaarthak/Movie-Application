@@ -18,6 +18,11 @@ namespace Movie_Application.Controllers
         {
             _context.Dispose();
         }
+
+        public IActionResult NewCustomer()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             /*_context.Customers.Add(new Customer()
