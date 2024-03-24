@@ -4,6 +4,7 @@ namespace Movie_Application.Models
 {
     public class Customer
     {
+        //Id of the Cusrtomer
         public int Id { get; set; }
         [Required]
         [StringLength(255)]
