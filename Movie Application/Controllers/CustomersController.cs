@@ -19,9 +19,36 @@ namespace Movie_Application.Controllers
             _context.Dispose();
         }
 
-        public IActionResult NewCustomer()
+        public IActionResult EditCustomer(int id)
         {
-            return View();
+            var customer = _context.Customers.SingleOrDefault(x => x.Id == id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            CustomerFormViewModel viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+            return View("CustomerForm", viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Create(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Customers");
+        }
+
+        public IActionResult CustomerForm()
+        {
+            CustomerFormViewModel newCustomerViewModel = new CustomerFormViewModel()
+            {
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+            return View(newCustomerViewModel);
         }
         public IActionResult Index()
         {
