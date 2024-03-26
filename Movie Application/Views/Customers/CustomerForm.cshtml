@@ -1,11 +1,11 @@
 ﻿@model Movie_Application.ViewModel.CustomerFormViewModel
 @{
-    ViewData["Title"] = "New Customer";
+    ViewData["Title"] = "Customer Form";
 }
 
-<h1>NewCustomer</h1>
+<h1>Customer Form</h1>
 
-@using (Html.BeginForm("Create", "Customers"))
+@using (Html.BeginForm("Save", "Customers"))
 {
     <br />
     <div class="form-group">
@@ -28,6 +28,7 @@
         @Html.CheckBoxFor(c => c.Customer.IsSubscribedToNewsletter) Subscribe For News Letter
     </div>
     <br />
+    @Html.HiddenFor(c => c.Customer.Id);
     <button type="submit" class="btn btn-primary">Submit</button>
 }
 

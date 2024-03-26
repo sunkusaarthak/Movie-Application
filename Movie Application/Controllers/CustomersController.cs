@@ -35,9 +35,20 @@ namespace Movie_Application.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Customer customer)
+        public IActionResult Save(Customer customer)
         {
-            _context.Customers.Add(customer);
+            if (customer.Id == 0)
+            {
+                _context.Customers.Add(customer);
+            }
+            else
+            {
+                var dbCustomer = _context.Customers.Single(c => c.Id == customer.Id);
+                dbCustomer.Name = customer.Name;
+                dbCustomer.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+                dbCustomer.MembershipTypeId = customer.MembershipTypeId;
+                dbCustomer.DateOfBirth = customer.DateOfBirth;
+            }
             _context.SaveChanges();
             return RedirectToAction("Index", "Customers");
         }
