@@ -58,7 +58,7 @@ namespace Movie_Application.Controllers
             };
             return View(movieFormViewModel);
         }
-
+        
         public IActionResult Details(int Id)
         {
             var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == Id);
