@@ -22,38 +22,6 @@ namespace Movie_Application.Controllers
             return View(moviesViewModel);
         }
 
-        public IActionResult Save(Movie movie)
-        {
-            if (movie.Id == 0)
-            {
-                movie.DateInserted = DateTime.Now;
-                _context.Movies.Add(movie);
-            }
-            else
-            {
-                var movieInDb = _context.Movies.FirstOrDefault(m => m.Id == movie.Id);
-                if (movieInDb != null)
-                {
-                    movieInDb.Name = movie.Name;
-                    movieInDb.GenreId = movie.GenreId;
-                    movieInDb.Stock = movie.Stock;
-                    movieInDb.ReleaseDate = movie.ReleaseDate;
-                }
-            }
-            _context.SaveChanges();
-            return RedirectToAction("Index", "Movies");
-        }
-
-        public IActionResult MovieForm(Movie movie)
-        {
-            MovieFormViewModel movieFormViewModel = new MovieFormViewModel
-            {
-                Movie = movie,
-                GenreList = _context.Genres.ToList()
-            };
-            return View(movieFormViewModel);
-        }
-
         public IActionResult Details(int Id)
         {
             var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == Id);
