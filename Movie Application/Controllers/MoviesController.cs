@@ -44,8 +44,13 @@ namespace Movie_Application.Controllers
             return RedirectToAction("Index", "Movies");
         }
 
-        public IActionResult MovieForm(Movie movie)
+        public IActionResult MovieForm(int Id)
         {
+            Movie movie = _context.Movies.FirstOrDefault(m => m.Id == Id);
+            if (movie == null)
+            {
+                movie = new Movie { Name = "" };
+            }
             MovieFormViewModel movieFormViewModel = new MovieFormViewModel
             {
                 Movie = movie,
