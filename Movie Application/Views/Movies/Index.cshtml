@@ -7,6 +7,7 @@
 <h2>Movies</h2>
 @if (Model.MoviesList.Any())
 {
+    @Html.ActionLink("Add Movie", "MovieForm", "Movies");
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
@@ -19,7 +20,7 @@
             {
                 <tr>
                     <td>
-                        @Html.ActionLink(movie.Name, "MovieForm", "Movies", new { Id = movie.Id}, null)
+                        @Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)
                     </td>
                     <td>
                         @movie.Genre.Name
@@ -33,4 +34,3 @@ else
 {
     <p>We don't have Movies Yet!</p>
 }
-
