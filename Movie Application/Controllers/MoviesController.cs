@@ -24,6 +24,15 @@ namespace Movie_Application.Controllers
 
         public IActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var movieFormViewModel = new MovieFormViewModel
+                {
+                    Movie = movie,
+                    GenreList = _context.Genres.ToList()
+                };
+                return View("MovieForm", movieFormViewModel);
+            }
             if (movie.Id == 0)
             {
                 movie.DateInserted = DateTime.Now;
@@ -58,7 +67,7 @@ namespace Movie_Application.Controllers
             };
             return View(movieFormViewModel);
         }
-        
+
         public IActionResult Details(int Id)
         {
             var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == Id);
