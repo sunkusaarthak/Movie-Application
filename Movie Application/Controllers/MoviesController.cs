@@ -22,6 +22,7 @@ namespace Movie_Application.Controllers
             return View(moviesViewModel);
         }
 
+        [ValidateAntiForgeryToken]
         public IActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)

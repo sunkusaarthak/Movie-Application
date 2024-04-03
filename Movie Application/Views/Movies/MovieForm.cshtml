@@ -43,7 +43,7 @@
     </div>
 
     @Html.HiddenFor(c => c.Movie.Id);
-
+    @Html.AntiForgeryToken();
     <br />
     <button type="submit" class="btn btn-primary">Submit</button>
 }
