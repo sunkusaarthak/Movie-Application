@@ -35,6 +35,7 @@ namespace Movie_Application.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Save(Customer customer)
         {
             if (customer.Id == 0)

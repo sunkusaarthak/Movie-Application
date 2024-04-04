@@ -3,6 +3,12 @@
     ViewData["Title"] = "Customer Form";
 }
 
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+</head>
+
 <h1>Customer Form</h1>
 
 @using (Html.BeginForm("Save", "Customers"))
@@ -11,17 +17,20 @@
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.Name)
         @Html.TextBoxFor(c => c.Customer.Name)
+        @Html.ValidationMessageFor(c => c.Customer.Name)
     </div>
     <br />
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.DateOfBirth)
         @Html.TextBoxFor(c => c.Customer.DateOfBirth, "{0: dd-mm-yyyy}")
+        @Html.ValidationMessageFor(c => c.Customer.DateOfBirth)
     </div>
     <br />
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.MembershipTypeId)
         @Html.DropDownListFor(c => c.Customer.MembershipTypeId, 
             new SelectList(Model.MembershipTypes, "Id", "Name"), "Select a Type")
+        @Html.ValidationMessageFor(c => c.Customer.MembershipTypeId)
     </div>
     <br />
     <div class="form-group">
@@ -29,6 +38,7 @@
     </div>
     <br />
     @Html.HiddenFor(c => c.Customer.Id);
+    @Html.AntiForgeryToken();
     <button type="submit" class="btn btn-primary">Submit</button>
 }
 
