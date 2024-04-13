@@ -17,5 +17,15 @@ namespace Movie_Application.Controllers.api
         {
             return _context.Customers.ToList();
         }
+
+        public Customer GetCustomer(int id)
+        {
+            var customer = _context.Customers.FirstOrDefault(c => c.Id == id);
+            if (customer == null)
+            {
+                return new Customer { Name = "" };
+            }
+            return customer;
+        }
     }
 }
